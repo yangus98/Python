@@ -49,4 +49,4 @@ while scelta <= 2:
                 )
             )
 else:
-    print("Arriverderci!")
+    print("Arrivederci!")
