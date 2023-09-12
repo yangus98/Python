@@ -8,7 +8,7 @@ def areaCerchio(raggio):
     print(f"*L'area del cerchio è {raggio**2 * 3.14}*")
 
 def areaQuadrato(lato):
-    print(f"*L'area del quadrato è {lato*lato}*")
+    print(f"*L'area del quadrato è {lato**2}*")
 
 def areaRettangolo(base, altezza):
     print(f"*L'area del rettangolo è {base*altezza}*")
