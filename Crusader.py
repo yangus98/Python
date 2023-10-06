@@ -26,10 +26,18 @@ while True:
 
             manovreDisponibili = random.sample(copiaManovrePreparate, numIniziali)
             print(f"Le manovre che puoi usare sono: {manovreDisponibili}")
+            adaptive = input("RESET INIZIALE: Vuoi usare il talento Adaptive Style?(s/n) ")
+            if adaptive == "s":
+                copiaManovrePreparate = []
 
             copiaManovrePreparate = [elemento for elemento in copiaManovrePreparate if elemento not in manovreDisponibili]
 
             while len(copiaManovrePreparate) > 0:
+                adaptive = input("RESET INFRATURNO: Vuoi usare il talento Adaptive Style?(s/n) ")
+                if adaptive == "s":
+                    copiaManovrePreparate = []
+                    break
+
                 manovraUsata = input("Inserisci la manovra da usare (scrivila esattamente come l'hai scritta prima...): ")
 
                 while manovraUsata.isdigit():
@@ -46,8 +54,8 @@ while True:
                 copiaManovrePreparate = [elemento for elemento in copiaManovrePreparate if elemento not in manovreDisponibili]
 
             if len(copiaManovrePreparate) == 0:
-                print("Hai finito le manovre da pescare.")
-                scelta = input("Vuoi continuare la battaglia? (s/n): ")
+                print("Hai finito le manovre da pescare e le stai resettando.")
+                scelta = input("Vuoi continuare? (s/n): ")
 
                 while scelta.isdigit() or scelta.lower() not in ['s', 'n']:
                     scelta = input("Inserisci 's' per continuare o 'n' per terminare: ")
