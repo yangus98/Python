@@ -1,39 +1,56 @@
 import random
 
-scelta = "s"
-numManovre = int(input("Benvenuto, inserisci il numero di manovre preparate: "))
-numIniziali = int(input("Inserisci il numero di manovre iniziali: "))
-manovrePreparate = []
+while True:
+    try:
+        scelta = "s"
+        numManovre = int(input("Benvenuto, inserisci il numero di manovre preparate: "))
+        numIniziali = int(input("Inserisci il numero di manovre iniziali: "))
 
-for x in range(numManovre):
-    insManovra = input(f"Inserisci la {x+1}° manovra: ")
-    manovrePreparate.append(insManovra)
+        while numIniziali > numManovre:
+            print("Il numero di manovre iniziali non può essere maggiore del numero di manovre preparate!")
+            numManovre = int(input("Inserisci il numero di manovre preparate: "))
+            numIniziali = int(input("Inserisci il numero di manovre iniziali: "))
+          
+        manovrePreparate = []
 
-print(f"Hai inserito: {manovrePreparate}")
+        for x in range(numManovre):
+            insManovra = input(f"Inserisci la {x+1}° manovra: ")
 
-while scelta == "s":
-    copiaManovrePreparate = manovrePreparate.copy()
+            while insManovra.isdigit():
+                insManovra = input(f"Non puoi inserire numeri, reinserisci la {x+1}° manovra: ")
 
-    manovreDisponibili = random.sample(copiaManovrePreparate, numIniziali)
-    print(f"Le manovre che puoi usare sono: {manovreDisponibili}")
+            manovrePreparate.append(insManovra)
 
-    copiaManovrePreparate = [elemento for elemento in copiaManovrePreparate if elemento not in manovreDisponibili]
-    print(f"Ti rimangono da pescare: {copiaManovrePreparate}")
+        while scelta == "s":
+            copiaManovrePreparate = manovrePreparate.copy()
 
-    while len(copiaManovrePreparate) > 0:
-     manovraUsata = input("Inserisci la manovra da usare(scrivila esattamente come l'hai scritta prima...): ")
-     while manovraUsata in manovreDisponibili:
-       manovreDisponibili.remove(manovraUsata)
+            manovreDisponibili = random.sample(copiaManovrePreparate, numIniziali)
+            print(f"Le manovre che puoi usare sono: {manovreDisponibili}")
 
-     indiceCasuale = random.randint(0, len(copiaManovrePreparate) - 1)
-     valoreCasuale = copiaManovrePreparate[indiceCasuale]
-     manovreDisponibili.append(valoreCasuale)
-     print(f"Le manovre che puoi usare sono: {manovreDisponibili}")
+            copiaManovrePreparate = [elemento for elemento in copiaManovrePreparate if elemento not in manovreDisponibili]
 
-     copiaManovrePreparate = [elemento
-        for elemento in copiaManovrePreparate
-        if elemento not in manovreDisponibili]
-     print(f"Ti rimangono da pescare: {copiaManovrePreparate}")
+            while len(copiaManovrePreparate) > 0:
+                manovraUsata = input("Inserisci la manovra da usare (scrivila esattamente come l'hai scritta prima...): ")
 
-    if len(copiaManovrePreparate) == 0:
-      scelta = input("Vuoi continuare? (s/n): ")
+                while manovraUsata.isdigit():
+                    manovraUsata = input("Non puoi inserire numeri, reinserisci il nome della manovra: ")
+
+                while manovraUsata in manovreDisponibili:
+                    manovreDisponibili.remove(manovraUsata)
+
+                indiceCasuale = random.randint(0, len(copiaManovrePreparate) - 1)
+                valoreCasuale = copiaManovrePreparate[indiceCasuale]
+                manovreDisponibili.append(valoreCasuale)
+                print(f"Le manovre che puoi usare sono: {manovreDisponibili}")
+
+                copiaManovrePreparate = [elemento for elemento in copiaManovrePreparate if elemento not in manovreDisponibili]
+
+            if len(copiaManovrePreparate) == 0:
+                print("Hai finito le manovre da pescare.")
+                scelta = input("Vuoi continuare la battaglia? (s/n): ")
+
+                while scelta.isdigit() or scelta.lower() not in ['s', 'n']:
+                    scelta = input("Inserisci 's' per continuare o 'n' per terminare: ")
+
+    except ValueError:
+        print("Inserisci un numero intero.")
