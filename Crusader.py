@@ -31,12 +31,31 @@ while True:
 
             while len(copiaManovrePreparate) > 0:
                 adaptive = input("RESET: Vuoi usare il talento Adaptive Style?(s/n) ")
+                while adaptive.isdigit() or adaptive.lower() not in ['s', 'n']:
+                    adaptive = input("Inserisci (s/n): ")
+
                 if adaptive == "s":
                     copiaManovrePreparate = []
-                    break
-                while adaptive.isdigit() or adaptive.lower() not in ['s', 'n']:
-                    adaptive = input("Inserisci s o n: ")
+                    numManovre = int(input("Inserisci il numero di manovre preparate: "))
+                    numIniziali = int(input("Inserisci il numero di manovre iniziali: "))
 
+                    while numIniziali > numManovre:
+                     print("Il numero di manovre iniziali non può essere maggiore del numero di manovre preparate!")
+                     numManovre = int(input("Inserisci il numero di manovre preparate: "))
+                     numIniziali = int(input("Inserisci il numero di manovre iniziali: "))
+
+                    manovrePreparate = []
+
+                    for x in range(numManovre):
+                     insManovra = input(f"Inserisci la {x+1}° manovra: ")
+
+                     while insManovra.isdigit():
+                      insManovra = input(f"Non puoi inserire numeri, reinserisci la {x+1}° manovra: ")
+
+                     manovrePreparate.append(insManovra)
+
+                    break
+                
                 manovraUsata = input("Inserisci la manovra da usare (scrivila esattamente come l'hai scritta prima...): ")
 
                 while manovraUsata.isdigit():
