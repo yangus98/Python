@@ -72,7 +72,7 @@ while True:
                 copiaManovrePreparate = [elemento for elemento in copiaManovrePreparate if elemento not in manovreDisponibili]
 
             if len(copiaManovrePreparate) == 0:
-                print("Hai finito le manovre da pescare e le stai resettando.")
+                print("Hai finito le manovre da pescare e/o le stai resettando.")
                 scelta = input("Vuoi continuare? (s/n): ")
 
                 while scelta.isdigit() or scelta.lower() not in ['s', 'n']:
