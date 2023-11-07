@@ -6,8 +6,8 @@ while True:
         numManovre = int(input("Benvenuto, inserisci il numero di manovre preparate: "))
         numIniziali = int(input("Inserisci il numero di manovre iniziali: "))
 
-        while numIniziali > numManovre:
-            print("Il numero di manovre iniziali non può essere maggiore del numero di manovre preparate!")
+        while numIniziali > numManovre or numIniziali == numManovre:
+            print("Il numero di manovre iniziali non può essere maggiore o uguale al numero di manovre preparate!")
             numManovre = int(input("Inserisci il numero di manovre preparate: "))
             numIniziali = int(input("Inserisci il numero di manovre iniziali: "))
           
