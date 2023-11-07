@@ -56,7 +56,7 @@ while True:
 
                     break
                 
-                manovraUsata = input("Inserisci la manovra da usare (scrivila esattamente come l'hai scritta prima...): ")
+                manovraUsata = input("Inserisci la manovra da usare (scrivila esattamente come l'hai scritta prima...) oppure scrivi qualsiasi altri caratteri per continuare il turno senza usare manovre: ")
 
                 while manovraUsata.isdigit():
                     manovraUsata = input("Non puoi inserire numeri, reinserisci il nome della manovra: ")
